@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "AUTO DOKTOR"
+description = "A Swiss automotive concierge for reporting vehicle problems, receiving a cautious AI-supported preliminary assessment, and requesting professional diagnosis in Thun and the Berner Oberland."
+version = "1.0.0"
+id = "artifacts/auto-doktor"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23110
+
+[services.development]
+run = "pnpm --filter @workspace/auto-doktor run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/auto-doktor", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/auto-doktor/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23110"
+BASE_PATH = "/"

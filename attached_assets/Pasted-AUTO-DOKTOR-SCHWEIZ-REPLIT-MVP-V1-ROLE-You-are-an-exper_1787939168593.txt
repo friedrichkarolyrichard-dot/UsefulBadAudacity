@@ -1,0 +1,1281 @@
+AUTO DOKTOR SCHWEIZ – REPLIT MVP V1
+
+ROLE
+
+You are an expert full-stack developer, UX/UI designer and AI product engineer.
+
+Build a real, working MVP web application for a new Swiss automotive service.
+
+The project name is:
+
+AUTO DOKTOR
+
+Slogan:
+
+„Ihr Auto. Unser Problem.“
+
+Alternative slogan:
+
+„Sie fahren. Wir kümmern uns um den Rest.“
+
+Initial service area:
+
+Thun, Gwatt, Steffisburg, Spiez and Berner Oberland, Switzerland.
+
+The application must be professional enough to show to real customers.
+
+This is NOT just a visual mockup.
+
+Build a functional MVP.
+
+⸻
+
+1. BUSINESS CONCEPT
+
+AUTO DOKTOR combines:
+
+* automotive expertise
+* AI-assisted preliminary vehicle problem analysis
+* professional mechanic review
+* vehicle pickup and delivery
+* vehicle checks
+* MFK preparation
+* repair coordination
+
+The key customer promise is:
+
+„Sie geben uns das Problem. Wir kümmern uns um den Rest.“
+
+The first MVP should focus on one simple customer journey:
+
+Customer has a car problem → reports it online → AI creates a preliminary assessment → customer can request a professional diagnosis → AutoDoktor contacts the customer.
+
+Do NOT build a huge platform yet.
+
+⸻
+
+2. PRIMARY MVP OBJECTIVE
+
+The first goal is to acquire the first 10 paying customers.
+
+Therefore the MVP must prioritize:
+
+1. Professional landing page
+2. Problem reporting form
+3. Vehicle information
+4. Photo upload
+5. Optional video upload
+6. Fault-code input
+7. AI preliminary assessment
+8. Customer contact details
+9. Admin dashboard
+10. Case management
+11. Diagnosis booking request
+12. Pickup request
+
+Everything else should be Phase 2.
+
+⸻
+
+3. TECHNOLOGY
+
+Use a modern, simple and maintainable stack.
+
+Preferred:
+
+* React
+* TypeScript
+* Next.js if supported well by the environment
+* Tailwind CSS
+* Node.js
+* PostgreSQL / Supabase if available
+* secure authentication
+* OpenAI API for AI analysis
+
+Keep the architecture simple.
+
+Do not introduce unnecessary microservices.
+
+Do not use Kubernetes.
+
+Do not build unnecessary infrastructure.
+
+⸻
+
+4. IMPORTANT COST REQUIREMENT
+
+This is a low-budget startup.
+
+The system must be designed to run cheaply.
+
+Use free or low-cost services wherever practical.
+
+Do not add paid services unless necessary.
+
+If an API requires an API key, use environment variables.
+
+NEVER hardcode API keys.
+
+Create:
+
+.env.example
+
+with placeholders such as:
+
+OPENAI_API_KEY=
+
+DATABASE_URL=
+
+⸻
+
+5. WEBSITE DESIGN
+
+Create a premium Swiss automotive-tech design.
+
+The website should feel:
+
+* professional
+* trustworthy
+* modern
+* technical
+* clean
+* simple
+
+Avoid:
+
+* childish graphics
+* excessive animations
+* cheap garage aesthetics
+* clutter
+
+Use a restrained automotive design.
+
+The website must be mobile-first.
+
+Most users will access it from a smartphone.
+
+⸻
+
+6. MAIN NAVIGATION
+
+Create:
+
+Home
+
+Services
+
+Problem melden
+
+Auto Check
+
+MFK
+
+Hol- & Bringservice
+
+Second Opinion
+
+Über uns
+
+Kontakt
+
+Login
+
+On mobile use a clean hamburger menu.
+
+The primary CTA should always be visible:
+
+PROBLEM MELDEN
+
+⸻
+
+7. HOME PAGE
+
+Create the following sections.
+
+HERO
+
+Headline:
+
+„Ihr Auto macht Probleme?“
+
+Subheadline:
+
+„Foto oder Video senden – AUTO DOKTOR unterstützt Sie mit KI und erfahrenem Mechaniker.“
+
+Primary button:
+
+PROBLEM MELDEN
+
+Secondary button:
+
+AUTO-CHECK BUCHEN
+
+⸻
+
+HOW IT WORKS
+
+Display:
+
+01
+
+Problem melden
+
+02
+
+KI-Voranalyse
+
+03
+
+Mechaniker prüft
+
+04
+
+Diagnose buchen
+
+05
+
+Fahrzeug abholen lassen
+
+06
+
+Reparatur koordinieren
+
+⸻
+
+WHY AUTO DOKTOR
+
+Explain:
+
+KI + Mechaniker
+
+AI helps analyze and organize information.
+
+A professional mechanic remains responsible for the final technical assessment.
+
+⸻
+
+CONVENIENCE
+
+Headline:
+
+„Keine Zeit für die Werkstatt?“
+
+Text:
+
+„Wir können Ihr Fahrzeug nach Vereinbarung abholen und nach der Arbeit zurückbringen.“
+
+CTA:
+
+HOL- & BRINGSERVICE
+
+⸻
+
+MFK
+
+Headline:
+
+„MFK steht an?“
+
+Text:
+
+„Wir prüfen Ihr Fahrzeug vor der MFK und helfen bei der Vorbereitung.“
+
+CTA:
+
+MFK CHECK
+
+⸻
+
+SECOND OPINION
+
+Headline:
+
+„Sie sind unsicher bei einer Reparaturofferte?“
+
+Text:
+
+„Lassen Sie eine Reparaturofferte durch AUTO DOKTOR überprüfen.“
+
+CTA:
+
+SECOND OPINION
+
+⸻
+
+8. PROBLEM MELDEN
+
+This is the most important function.
+
+Create a mobile-friendly multi-step wizard.
+
+Use progress indicator:
+
+Schritt 1 von 6
+
+⸻
+
+STEP 1 – VEHICLE
+
+Fields:
+
+Marke
+
+Modell
+
+Jahr
+
+Motor
+
+Kilometerstand
+
+Treibstoff
+
+Getriebe
+
+Kennzeichen
+
+VIN optional
+
+⸻
+
+STEP 2 – PROBLEM
+
+Question:
+
+„Was ist das Problem?“
+
+Selectable categories:
+
+Motor
+
+Getriebe
+
+Bremsen
+
+Fahrwerk
+
+Elektrik
+
+Batterie
+
+Klimaanlage
+
+DPF / Abgas
+
+Geräusch
+
+Startproblem
+
+Kontrollleuchte
+
+Sonstiges
+
+⸻
+
+STEP 3 – SYMPTOMS
+
+Text area:
+
+„Beschreiben Sie das Problem möglichst genau.“
+
+Placeholder:
+
+„Zum Beispiel: Motorlampe leuchtet und das Fahrzeug hat weniger Leistung.“
+
+⸻
+
+STEP 4 – FAULT CODE
+
+Optional:
+
+„Haben Sie einen Fehlercode?“
+
+Input:
+
+Example:
+
+P2002
+
+P0190
+
+P253F
+
+Allow multiple codes.
+
+⸻
+
+STEP 5 – MEDIA
+
+Allow:
+
+Photo upload
+
+Video upload
+
+Show preview.
+
+Validate file type and size.
+
+Use secure file handling.
+
+⸻
+
+STEP 6 – DRIVING STATUS
+
+Question:
+
+„Kann das Fahrzeug noch gefahren werden?“
+
+Options:
+
+🟢 Ja
+
+🟡 Unsicher
+
+🔴 Nein
+
+If user selects „Nein“ or serious safety-related symptoms are detected, show a prominent warning:
+
+„Bitte fahren Sie das Fahrzeug nicht weiter. Eine professionelle Prüfung ist erforderlich.“
+
+Do not tell the customer that the vehicle is safe without professional inspection.
+
+⸻
+
+STEP 7 – CONTACT
+
+Collect:
+
+Vorname
+
+Nachname
+
+Telefon
+
+E-Mail
+
+Preferred contact:
+
+Telefon
+
+WhatsApp
+
+E-Mail
+
+Checkbox:
+
+„Ich akzeptiere die Datenschutzbestimmungen.“
+
+⸻
+
+9. AI ANALYSIS
+
+After submitting the problem, send the structured information to the AI.
+
+Create an AI service module.
+
+The AI should return structured JSON.
+
+Example structure:
+
+{
+  "urgency": "medium",
+  "possible_causes": [],
+  "recommended_diagnostic_steps": [],
+  "customer_explanation": "",
+  "mechanic_summary": "",
+  "confidence": "low"
+}
+
+The AI must NOT provide a guaranteed diagnosis.
+
+Use language such as:
+
+„Mögliche Ursache“
+
+„Wahrscheinliche Ursache“
+
+„Weitere Diagnose erforderlich“
+
+Never claim certainty when there is insufficient information.
+
+⸻
+
+10. AI URGENCY
+
+Use:
+
+LOW
+
+MEDIUM
+
+HIGH
+
+CRITICAL
+
+CRITICAL or HIGH cases should display:
+
+„Bitte lassen Sie das Fahrzeug professionell überprüfen.“
+
+For potentially dangerous situations:
+
+„Fahrzeug möglichst nicht weiterfahren.“
+
+The AI is an assistant.
+
+The mechanic is the final technical authority.
+
+⸻
+
+11. CUSTOMER RESULT PAGE
+
+After AI processing display:
+
+„Ihre erste Einschätzung“
+
+Show:
+
+Dringlichkeit
+
+Example:
+
+🟡 MITTEL
+
+Mögliche Ursachen
+
+Empfohlene nächsten Schritte
+
+Erklärung
+
+Simple German explanation.
+
+Then CTA:
+
+„PROFESSIONELLE DIAGNOSE BUCHEN“
+
+Secondary CTA:
+
+„FAHRZEUG ABHOLEN LASSEN“
+
+⸻
+
+12. SERVICES PAGE
+
+Create cards for:
+
+AI AUTO CHECK
+
+CHF 19
+
+Preliminary AI assessment.
+
+Clearly state:
+
+Keine endgültige Fahrzeugdiagnose.
+
+⸻
+
+AUTODOKTOR DIAGNOSE
+
+CHF 79
+
+* OBD
+* Fehlerspeicher
+* Basisdiagnose
+* Mechanikerprüfung
+* AI-supported report
+
+⸻
+
+FAHRZEUG CHECK
+
+CHF 99
+
+20–30 point vehicle inspection.
+
+⸻
+
+MFK READY
+
+CHF 149
+
+Pre-MFK inspection and preparation.
+
+⸻
+
+HOL- & BRINGSERVICE
+
+From CHF 39.
+
+Round trip from CHF 69.
+
+Final price depends on distance.
+
+⸻
+
+SECOND OPINION
+
+CHF 39–59
+
+Review of an existing repair offer.
+
+⸻
+
+13. BOOKING REQUEST
+
+Create a simple booking form.
+
+Customer selects:
+
+Vehicle
+
+Service
+
+Preferred date
+
+Preferred time
+
+Address
+
+Additional note
+
+Phone
+
+Email
+
+Submit.
+
+For MVP this is a REQUEST, not an automatically confirmed appointment.
+
+Admin manually confirms the appointment.
+
+⸻
+
+14. PICKUP REQUEST
+
+Create:
+
+„Fahrzeug abholen lassen“
+
+Fields:
+
+Vehicle
+
+Pickup address
+
+Preferred date
+
+Preferred time
+
+Parking/access information
+
+Phone
+
+Additional notes
+
+Admin receives the request.
+
+No route optimization is required in MVP.
+
+⸻
+
+15. ADMIN DASHBOARD
+
+Create a protected admin area.
+
+Admin dashboard should show:
+
+CASES
+
+New
+
+AI analyzed
+
+Waiting for mechanic
+
+Diagnosis requested
+
+Pickup requested
+
+Offer pending
+
+Completed
+
+⸻
+
+Each case should show:
+
+Case number
+
+Customer
+
+Vehicle
+
+Problem
+
+Fault codes
+
+Photos
+
+Video
+
+AI analysis
+
+Mechanic notes
+
+Status
+
+Created date
+
+⸻
+
+16. CASE STATUS
+
+Use:
+
+NEW
+
+AI_ANALYSIS
+
+WAITING_FOR_MECHANIC
+
+DIAGNOSIS_REQUESTED
+
+PICKUP_REQUESTED
+
+DIAGNOSING
+
+OFFER_SENT
+
+CUSTOMER_APPROVAL
+
+REPAIR
+
+MFK
+
+READY
+
+DELIVERY
+
+COMPLETED
+
+CANCELLED
+
+⸻
+
+17. ADMIN ACTIONS
+
+Admin must be able to:
+
+* view case
+* view customer
+* view vehicle
+* view uploaded media
+* view AI analysis
+* add mechanic notes
+* change case status
+* create diagnosis appointment
+* create pickup request
+* create offer
+* add internal notes
+
+⸻
+
+18. OFFER SYSTEM – BASIC MVP
+
+Admin can create a simple offer.
+
+Example:
+
+Diagnosis
+
+CHF 79
+
+Repair
+
+CHF 350
+
+Parts
+
+CHF 200
+
+Labour
+
+CHF 150
+
+Total
+
+CHF 779
+
+Customer can later accept or decline.
+
+For MVP, an online payment system is NOT required.
+
+⸻
+
+19. CUSTOMER ACCOUNT
+
+Create basic authentication.
+
+Customer can:
+
+* register
+* login
+* logout
+* see their vehicles
+* see their cases
+* see AI reports
+* see appointment requests
+
+Do not build advanced customer management yet.
+
+⸻
+
+20. VEHICLE DATABASE
+
+A customer can have multiple vehicles.
+
+Vehicle fields:
+
+make
+
+model
+
+year
+
+engine
+
+fuel
+
+transmission
+
+mileage
+
+registration
+
+VIN
+
+⸻
+
+21. BASIC SERVICE HISTORY
+
+For each vehicle display:
+
+Date
+
+Mileage
+
+Service
+
+Notes
+
+Cost
+
+Documents
+
+This should be basic in MVP.
+
+⸻
+
+22. DATABASE MODELS
+
+Create a clean relational database.
+
+Minimum:
+
+User
+
+Vehicle
+
+DiagnosticCase
+
+AIAnalysis
+
+MediaFile
+
+Appointment
+
+PickupRequest
+
+Offer
+
+OfferItem
+
+ServiceHistory
+
+Document
+
+AuditLog
+
+⸻
+
+23. SECURITY
+
+Implement:
+
+* secure authentication
+* role-based access
+* admin authorization
+* input validation
+* file validation
+* file size limits
+* secure uploads
+* no public customer data
+* protected API routes
+
+Roles:
+
+CUSTOMER
+
+ADMIN
+
+MECHANIC
+
+⸻
+
+24. LEGAL PAGES
+
+Create placeholder pages:
+
+Datenschutz
+
+Impressum
+
+AGB
+
+AI Disclaimer
+
+Do NOT invent company registration numbers.
+
+Do NOT invent addresses.
+
+Do NOT invent phone numbers.
+
+Use placeholders where necessary.
+
+Mark legal texts as requiring final Swiss legal review before production launch.
+
+⸻
+
+25. CONTACT PAGE
+
+Use placeholders:
+
+Phone:
+
+[TELEFON EINFÜGEN]
+
+Email:
+
+[E-MAIL EINFÜGEN]
+
+WhatsApp:
+
+[WHATSAPP EINFÜGEN]
+
+Service area:
+
+Thun / Gwatt / Steffisburg / Spiez / Berner Oberland
+
+Do not invent contact information.
+
+⸻
+
+26. SEO
+
+Add basic SEO metadata.
+
+Title:
+
+AUTO DOKTOR – Autodiagnose & Auto Service in Thun
+
+Description:
+
+„AI-unterstützte Fahrzeugdiagnose, Auto Check, MFK Vorbereitung und Hol- & Bringservice in Thun und Umgebung.“
+
+Prepare pages for:
+
+Autodiagnose Thun
+
+Auto Check Thun
+
+MFK Vorbereitung Thun
+
+Hol und Bringservice Thun
+
+Motorlampe Thun
+
+Autodiagnose Berner Oberland
+
+⸻
+
+27. MOBILE UX
+
+The following must work extremely well on mobile:
+
+Problem melden
+
+Photo upload
+
+Video upload
+
+AI result
+
+Booking request
+
+Pickup request
+
+WhatsApp CTA
+
+Buttons must be large and easy to tap.
+
+⸻
+
+28. ERROR HANDLING
+
+Create user-friendly error messages in German.
+
+Examples:
+
+„Bitte füllen Sie die Pflichtfelder aus.“
+
+„Die Datei ist zu gross.“
+
+„Dieses Dateiformat wird nicht unterstützt.“
+
+„Die AI-Analyse konnte momentan nicht durchgeführt werden. Bitte versuchen Sie es später erneut.“
+
+Never expose technical stack traces to customers.
+
+⸻
+
+29. AI FAILURE FALLBACK
+
+If the AI API is unavailable:
+
+Do NOT break the entire application.
+
+Instead show:
+
+„Ihre Anfrage wurde gespeichert. Die Analyse wird nach Möglichkeit später durchgeführt.“
+
+The admin should still be able to see the case.
+
+⸻
+
+30. ADMIN DEMO DATA
+
+Create safe fictional demo data.
+
+Example:
+
+Customer:
+
+Max Muster
+
+Vehicle:
+
+VW Golf 2.0 TDI
+
+Do not use real personal data.
+
+Clearly mark demo data.
+
+⸻
+
+31. ANALYTICS
+
+Prepare basic tracking for:
+
+* Problem melden clicked
+* problem form submitted
+* AI analysis completed
+* diagnosis request
+* pickup request
+
+Use privacy-conscious analytics.
+
+If analytics is not configured, create a placeholder.
+
+⸻
+
+32. FUTURE PHASES
+
+Do NOT fully implement these now.
+
+Prepare architecture for:
+
+PHASE 2:
+
+WhatsApp API
+
+TWINT
+
+online payment
+
+VIN lookup
+
+automatic reminders
+
+digital invoices
+
+subscription
+
+PHASE 3:
+
+OBD integration
+
+remote diagnostics
+
+partner garage network
+
+automatic appointment scheduling
+
+parts price comparison
+
+fleet management
+
+PHASE 4:
+
+AUTO DOKTOR SCHWEIZ
+
+French
+
+Italian
+
+English
+
+multiple locations
+
+partner network
+
+fleet customers
+
+⸻
+
+33. IMPORTANT BRAND MESSAGE
+
+Throughout the website, communicate:
+
+„Sie geben uns das Problem. Wir kümmern uns um den Rest.“
+
+The company should feel like an automotive concierge.
+
+Not simply:
+
+„Wir reparieren Autos.“
+
+But:
+
+„Wir kümmern uns um Ihr Fahrzeug.“
+
+⸻
+
+34. DO NOT OVERBUILD
+
+This is extremely important.
+
+Do NOT build:
+
+* complex payment system
+* complex fleet system
+* partner marketplace
+* route optimization
+* subscription billing
+* remote OBD
+* advanced VIN database
+* complicated CRM
+
+in this first version.
+
+The first version must be small enough to launch quickly.
+
+⸻
+
+35. DEVELOPMENT RULE
+
+Before writing a large amount of code:
+
+1. Analyze the requirements.
+2. Propose the architecture.
+3. Create the project structure.
+4. Implement the MVP incrementally.
+5. Test every major feature.
+6. Fix errors.
+7. Make the application mobile responsive.
+8. Prepare deployment instructions.
+
+Do not create fake integrations.
+
+If something requires an external API key, create a real integration using environment variables if possible.
+
+⸻
+
+36. FINAL MVP ACCEPTANCE TEST
+
+The finished MVP must allow me to perform this exact test:
+
+CUSTOMER
+
+1. Open website.
+2. Click PROBLEM MELDEN.
+3. Enter a vehicle.
+4. Enter a problem.
+5. Enter fault code P2002.
+6. Upload a photo.
+7. Enter contact information.
+8. Submit.
+9. AI creates preliminary assessment.
+10. Customer sees result.
+11. Customer clicks DIAGNOSE BUCHEN.
+12. Booking request is created.
+
+ADMIN
+
+13. Login as admin.
+14. See the new case.
+15. Open the case.
+16. See vehicle data.
+17. See customer data.
+18. See photo.
+19. See AI analysis.
+20. Add mechanic notes.
+21. Change status.
+22. Create an offer.
+23. See the offer attached to the case.
+
+This entire flow must work.
+
+⸻
+
+37. FIRST TASK
+
+DO NOT start by building everything.
+
+First provide:
+
+A. Architecture
+
+B. Project structure
+
+C. Database schema
+
+D. AI architecture
+
+E. Security architecture
+
+F. MVP development plan
+
+G. Estimated running costs
+
+Then begin implementing:
+
+PHASE 1 – LANDING PAGE + PROBLEM MELDEN
+
+After implementation, test it before moving to the next phase.
+
+The goal is a real working MVP that can eventually be deployed publicly.
+
+Do not stop at a static design.
+
+Build the actual application.
