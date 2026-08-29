@@ -4,6 +4,13 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
+import Home from '@/pages/home';
+import Services from '@/pages/services';
+import Contact from '@/pages/contact';
+import Legal from '@/pages/legal';
+import ProblemReport from '@/pages/problem-report';
+import CaseResult from '@/pages/case-result';
+import { I18nProvider } from "@/lib/i18n";
 import {
   Route,
   Switch,
@@ -13,21 +20,6 @@ import {
 
 const queryClient = new QueryClient();
 
-function Home() {
-  return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Replit Agent is building...
-        </h1>
-        <p className="mt-2 text-sm text-gray-600">
-          Your app will appear here once it's ready.
-        </p>
-      </div>
-    </div>
-  );
-}
-
 function Router() {
   return (
     // Keep a shared shell (sidebar, navbar) outside the boundary so it
@@ -35,6 +27,14 @@ function Router() {
     <RoutedErrorBoundary>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/problem-melden" component={ProblemReport} />
+        <Route path="/fall/:caseId" component={CaseResult} />
+        <Route path="/services" component={Services} />
+        <Route path="/kontakt" component={Contact} />
+        <Route path="/datenschutz">{() => <Legal path="/datenschutz" />}</Route>
+        <Route path="/impressum">{() => <Legal path="/impressum" />}</Route>
+        <Route path="/agb">{() => <Legal path="/agb" />}</Route>
+        <Route path="/ai-disclaimer">{() => <Legal path="/ai-disclaimer" />}</Route>
         <Route component={NotFound} />
       </Switch>
     </RoutedErrorBoundary>
@@ -50,10 +50,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
+        <I18nProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+            <Router />
+          </WouterRouter>
+          <Toaster />
+        </I18nProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

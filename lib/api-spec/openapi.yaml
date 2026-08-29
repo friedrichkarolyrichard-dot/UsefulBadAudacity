@@ -10,6 +10,10 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: cases
+    description: Customer vehicle problem cases
+  - name: services
+    description: Public service catalog
 paths:
   /healthz:
     get:
@@ -24,7 +28,104 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /services:
+    get:
+      operationId: listServices
+      tags: [services]
+      summary: List available services
+      responses:
+        "200":
+          description: Available services
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Service"
+  /cases:
+    post:
+      operationId: createCase
+      tags: [cases]
+      summary: Create a vehicle problem case
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CaseInput"
+      responses:
+        "201":
+          description: Saved case with preliminary assessment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaseResult"
+        "400":
+          description: Invalid case data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /cases/{caseId}:
+    get:
+      operationId: getCase
+      tags: [cases]
+      summary: Get a saved case and its assessment
+      parameters:
+        - $ref: "#/components/parameters/CaseId"
+      responses:
+        "200":
+          description: Case details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaseResult"
+        "404":
+          description: Case not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /cases/{caseId}/appointments:
+    post:
+      operationId: createAppointmentRequest
+      tags: [cases]
+      summary: Request a professional diagnosis appointment
+      parameters:
+        - $ref: "#/components/parameters/CaseId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AppointmentInput"
+      responses:
+        "201":
+          description: Appointment request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+        "400":
+          description: Invalid booking data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Case not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
+  parameters:
+    CaseId:
+      name: caseId
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     HealthStatus:
       type: object
@@ -33,4 +134,208 @@ components:
           type: string
       required:
         - status
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required: [error]
+    Service:
+      type: object
+      properties:
+        slug:
+          type: string
+        name:
+          type: string
+        price:
+          type: string
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+      required: [slug, name, price, description, features]
+    VehicleInput:
+      type: object
+      properties:
+        make:
+          type: string
+          minLength: 1
+        model:
+          type: string
+          minLength: 1
+        year:
+          type: number
+          minimum: 1900
+          maximum: 2100
+        engine:
+          type: string
+        mileage:
+          type: number
+          minimum: 0
+        fuel:
+          type: string
+        transmission:
+          type: string
+        registration:
+          type: string
+        vin:
+          type: [string, "null"]
+      required: [make, model, year, engine, mileage, fuel, transmission, registration]
+    ContactInput:
+      type: object
+      properties:
+        firstName:
+          type: string
+          minLength: 1
+        lastName:
+          type: string
+          minLength: 1
+        phone:
+          type: string
+          minLength: 5
+        email:
+          type: string
+          description: Email address
+        preferredContact:
+          type: string
+          enum: [phone, whatsapp, email]
+      required: [firstName, lastName, phone, email, preferredContact]
+    MediaInput:
+      type: object
+      properties:
+        name:
+          type: string
+        contentType:
+          type: string
+        size:
+          type: number
+          minimum: 1
+        kind:
+          type: string
+          enum: [photo, video]
+      required: [name, contentType, size, kind]
+    CaseInput:
+      type: object
+      properties:
+        vehicle:
+          $ref: "#/components/schemas/VehicleInput"
+        category:
+          type: string
+          minLength: 1
+        symptoms:
+          type: string
+          minLength: 1
+        faultCodes:
+          type: array
+          items:
+            type: string
+        media:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaInput"
+        drivingStatus:
+          type: string
+          enum: [yes, unsure, no]
+        contact:
+          $ref: "#/components/schemas/ContactInput"
+        consentAccepted:
+          type: boolean
+          const: true
+      required: [vehicle, category, symptoms, faultCodes, media, drivingStatus, contact, consentAccepted]
+    Assessment:
+      type: object
+      properties:
+        urgency:
+          type: string
+          enum: [low, medium, high, critical]
+        possibleCauses:
+          type: array
+          items:
+            type: string
+        recommendedSteps:
+          type: array
+          items:
+            type: string
+        customerExplanation:
+          type: string
+        disclaimer:
+          type: string
+      required: [urgency, possibleCauses, recommendedSteps, customerExplanation, disclaimer]
+    CaseResult:
+      type: object
+      properties:
+        id:
+          type: string
+        caseNumber:
+          type: string
+        status:
+          type: string
+          enum: [NEW, PRELIMINARY_REVIEW, DIAGNOSIS_REQUESTED]
+        createdAt:
+          type: string
+          format: date-time
+        vehicle:
+          $ref: "#/components/schemas/VehicleInput"
+        category:
+          type: string
+        symptoms:
+          type: string
+        faultCodes:
+          type: array
+          items:
+            type: string
+        media:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaInput"
+        drivingStatus:
+          type: string
+          enum: [yes, unsure, no]
+        contact:
+          $ref: "#/components/schemas/ContactInput"
+        assessment:
+          $ref: "#/components/schemas/Assessment"
+        appointment:
+          oneOf:
+            - $ref: "#/components/schemas/Appointment"
+            - type: "null"
+      required: [id, caseNumber, status, createdAt, vehicle, category, symptoms, faultCodes, media, drivingStatus, contact, assessment, appointment]
+    AppointmentInput:
+      type: object
+      properties:
+        preferredDate:
+          type: string
+          format: date
+        preferredTime:
+          type: string
+        address:
+          type: string
+          minLength: 1
+        note:
+          type: string
+      required: [preferredDate, preferredTime, address]
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: string
+        caseId:
+          type: string
+        service:
+          type: string
+        preferredDate:
+          type: string
+          format: date
+        preferredTime:
+          type: string
+        address:
+          type: string
+        note:
+          type: string
+        status:
+          type: string
+          enum: [REQUESTED, CONFIRMED]
+      required: [id, caseId, service, preferredDate, preferredTime, address, note, status]
 
